@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
+
+CSV.foreach(Rails.root.join('lib', 'seeds', 'street_cafes_2020-21.csv'), headers: ['name', 'address', 'post_code', 'chairs', 'info']) do |row|
+	Cafe.find_or_create_by(row.to_h)
+    puts "#{row['name']} created!"
+end
+
+heads = Cafe.where(name: "Café/Restaurant Name")
+heads.destroy_all
