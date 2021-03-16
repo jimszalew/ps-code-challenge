@@ -28,7 +28,22 @@ ActiveRecord::Schema.define(version: 20210315133248) do
 
 
   create_view "post_codes", sql_definition: <<-SQL
-      SELECT DISTINCT cafes.post_code AS postcode
-     FROM cafes;
+      SELECT a.post_code,
+      count(a.id) AS total_places,
+      sum(a.chairs) AS total_chairs,
+      round(((((sum(a.chairs))::double precision / (( SELECT sum(b.chairs) AS sum
+             FROM cafes b))::double precision) * (100)::double precision))::numeric, 2) AS chairs_pct,
+      max((e.name)::text) AS place_with_max_chairs,
+      max(e.chairs) AS max_chairs
+     FROM (cafes a
+       LEFT JOIN ( SELECT c.name,
+              c.post_code,
+              c.chairs
+             FROM cafes c
+            WHERE (((c.post_code)::text, c.chairs) IN ( SELECT d.post_code,
+                      max(d.chairs) AS max
+                     FROM cafes d
+                    GROUP BY d.post_code))) e ON (((a.post_code)::text = (e.post_code)::text)))
+    GROUP BY a.post_code;
   SQL
 end
