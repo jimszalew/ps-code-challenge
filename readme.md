@@ -7,6 +7,8 @@
 2) Download the data file from: https://github.com/gospotcheck/ps-code-challenge/blob/master/Street%20Cafes%202020-21.csv
 
 3) Add a varchar column to the table called `category`. 
+    
+    *Jim*: Rails migration adds the column to the Cafes table.
 
 4) Create a view with the following columns[provide the view SQL]
     - post_code: The Post Code
@@ -17,6 +19,10 @@
     -max_chairs: The number of chairs at the place_with_max_chairs
 	
     *Please also include a brief description of how you verified #4*
+
+    *Jim*: 
+    - SELECT * FROM post_codes; will provide the view SQL
+    - I used psql and checked values to make sure they were correct. I had to stumble through modifying my query in the terminal to get it right. This is my first time creating a sql view and I am unfamiliar with testing methods. Becoming more familiar with those practices will make future tasks of this nature go faster. So far I have been unable to figure out how to add my sql view files to git, but running the migrations will at least generate those locally.
 
 5) Write a Rails script to categorize the cafes and write the result to the category according to the rules:[provide the script]
     - If the Post Code is of the LS1 prefix type:
@@ -31,10 +37,23 @@
 
     *Please share any tests you wrote for #5*
 
+    *Jim*: I decided to go with a rake task to update the categories. This way it can be run from the command line. Run **rake development:categorize** after setup steps (rake db:create, migrate, seed).
+
 6) Write a custom view to aggregate the categories [provide view SQL AND the results of this view]
     - category: The category column
     - total_places: The number of places in that category
     - total_chairs: The total chairs in that category
+    
+    *Jim*: 
+    - SELECT * FROM categories; will provide the view SQL
+    | category   | total_places | total_chairs |
+    |------------|--------------|--------------|
+    | ls1_large  | 1            | 152          |
+    | ls1_medium | 49           | 1223         |
+    | ls1_small  | 11           | 64           |
+    | ls2_large  | 4            | 438          |
+    | ls2_small  | 6            | 135          |
+    | other      | 2            | 67           |
 
 7) Write a script in rails to:
     - For street_cafes categorized as small, write a script that exports their data to a csv and deletes the records
