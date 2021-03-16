@@ -7,12 +7,16 @@ namespace :development do
 
         ls2_mean = ls2_cafes.sum(:chairs) / ls2_cafes.count
 
-        ls1_cafes.each do |cafe|
+        ls1_cafes.map do |cafe|
             cafe.ls1_size
         end
 
-        ls2_cafes.each do |cafe|
+        ls2_cafes.map do |cafe|
             cafe.ls2_size(ls2_mean)
+        end
+
+        other.map do |cafe|
+            cafe.other_cat
         end
     end
 end
