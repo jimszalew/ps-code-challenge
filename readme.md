@@ -46,14 +46,14 @@
     
     *Jim*: 
     - SELECT * FROM categories; will provide the view SQL
-    | category   | total_places | total_chairs |
-    |------------|--------------|--------------|
-    | ls1_large  | 1            | 152          |
-    | ls1_medium | 49           | 1223         |
-    | ls1_small  | 11           | 64           |
-    | ls2_large  | 4            | 438          |
-    | ls2_small  | 6            | 135          |
-    | other      | 2            | 67           |
+    - | category   | total_places | total_chairs |
+    - |------------|--------------|--------------|
+    - | ls1_large  | 1            | 152          |
+    - | ls1_medium | 49           | 1223         |
+    - | ls1_small  | 11           | 64           |
+    - | ls2_large  | 4            | 438          |
+    - | ls2_small  | 6            | 135          |
+    - | other      | 2            | 67           |
 
 7) Write a script in rails to:
     - For street_cafes categorized as small, write a script that exports their data to a csv and deletes the records
