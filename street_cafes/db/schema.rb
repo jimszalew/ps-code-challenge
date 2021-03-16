@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20210316191132) do
       count(c.id) AS total_places,
       sum(c.chairs) AS total_chairs
      FROM cafes c
-    GROUP BY c.category;
+    GROUP BY c.category
+    ORDER BY c.category;
   SQL
 end

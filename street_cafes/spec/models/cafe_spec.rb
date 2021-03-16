@@ -34,10 +34,4 @@ describe Cafe do
             expect(ls2_large_cafe.ls2_size(ls2_mean)).to eq('ls2_large')
         end
     end
-
-    describe 'other_cat' do
-        it 'sets other category' do
-            expect(ls10_other.other_cat).to eq('other')
-        end
-    end
 end

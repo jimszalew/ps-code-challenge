@@ -18,8 +18,4 @@ class Cafe < ApplicationRecord
             self.category = "ls2_large"
         end
     end
-
-    def other_cat
-        self.category = "other"
-    end
 end
